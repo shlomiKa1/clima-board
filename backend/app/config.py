@@ -1,0 +1,1 @@
+BASE_URL = "https://geocoding-api.open-meteo.com/v1"
