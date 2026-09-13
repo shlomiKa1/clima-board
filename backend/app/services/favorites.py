@@ -1,8 +1,8 @@
-from data import loadFile, saveData
+from data import load_data, save_data
 from schemas.favorite import FavoriteBody
 
 def get_all(explorerName: str):
-    data = loadFile();
+    data = load_data();
     favorites=[]
 
     for weater in data:
@@ -11,7 +11,7 @@ def get_all(explorerName: str):
     return favorites
 
 def add_weather_favorite(new_weather: FavoriteBody):
-    data = loadFile()
+    data = load_data()
 
     for weather in data:
         if (exists_weather(weather, new_weather)):
@@ -20,11 +20,11 @@ def add_weather_favorite(new_weather: FavoriteBody):
     new_id = max([item["id"] for item in data]) + 1 if len(data) > 0 else 1
     new_weather = {"id": new_id, **new_weather.model_dump()}
     data.append(new_weather)
-    saveData(data)
+    save_data(data)
     return new_weather
 
 def delete_weather(weather_id):
-    data = loadFile()
+    data = load_data()
     old_len = len(data)
 
     data = [w for w in data if w["id"] != weather_id]
@@ -32,7 +32,7 @@ def delete_weather(weather_id):
     if old_len == len(data):
         return False
 
-    saveData(data)
+    save_data(data)
     return True
 
 def exists_weather(weather: dict, new_weather: FavoriteBody):
