@@ -8,7 +8,7 @@ from middleware.error_handler import error_handler
 
 app = FastAPI()
 
-origins = ["*"]
+origins = ["http://localhost:5173"]
 app.add_middleware(CORSMiddleware,
                    allow_origins=origins,
                    allow_credentials=True,
@@ -23,4 +23,4 @@ app.include_router(favoritesRoute, prefix="/favorites")
 
 @app.get("/health")
 def get_health() -> dict:
-    return {"message": "The server is runnig"}
+    return {"message": "The server is running"}
