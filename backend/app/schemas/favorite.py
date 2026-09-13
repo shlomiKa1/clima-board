@@ -5,6 +5,6 @@ class FavoriteBody(BaseModel):
 
     explorerName: str = Field(min_length=2, max_length=100)
     cityName: str = Field(min_length=2, max_length=100)
-    lat: float = Field(min=-90, max=90)
-    lon: float = Field(min=-180, max=180)
+    lat: float = Field(ge=-90, le=90)
+    lon: float = Field(ge=-180, le=180)
     
