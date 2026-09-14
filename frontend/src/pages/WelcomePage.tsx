@@ -6,6 +6,7 @@ const WelcomePage = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
+    if (!explorerName.trim()) return;
     localStorage.setItem("explorerName", explorerName);
     navigate("/dashboard", { replace: true });
   };
@@ -17,7 +18,6 @@ const WelcomePage = () => {
         value={explorerName}
         onChange={(e) => setExplorerName(e.target.value)}
         placeholder="מומו טוטו"
-        required
       />
       <button onClick={handleLogin}>התחברות</button>
     </div>
