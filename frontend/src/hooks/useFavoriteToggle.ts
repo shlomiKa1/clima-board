@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useExecute from "./useExecute";
-import { type Favorite, type FavoriteBody } from "../componets/Favorites";
+import type { Favorite, FavoriteBody } from "../types/favorite";
 
 function useFavoriteToggle(cityName: string, lat: number, lon: number) {
   const explorerName = localStorage.getItem("explorerName");
