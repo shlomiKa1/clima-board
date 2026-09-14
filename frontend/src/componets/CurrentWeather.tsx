@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import useExecute from "../hooks/useExecute";
-import type { CurrentWeather } from "../types/weather";
+import type { CurrentWeatherResponse } from "../types/weather";
 interface CurrentWeatherProps {
   lat: number;
   lon: number;
@@ -10,7 +10,7 @@ const CurrentWeather = ({ lat, lon }: CurrentWeatherProps) => {
   //   const lat = 32.08088;
   //   const lon = 34.78057;
 
-  const { data, loading, error, execute } = useExecute<CurrentWeather>();
+  const { data, loading, error, execute } = useExecute<CurrentWeatherResponse>();
   useEffect(() => {
     execute({
       method: "get",

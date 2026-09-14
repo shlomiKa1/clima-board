@@ -16,7 +16,7 @@ export interface CurrentData {
   apparent_temperature: number;
 }
 
-export interface CurrentWeather {
+export interface CurrentWeatherResponse {
   latitude: number;
   longitude: number;
   current_units: CurrentUnits;
