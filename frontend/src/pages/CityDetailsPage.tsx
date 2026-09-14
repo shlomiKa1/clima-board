@@ -1,8 +1,9 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import ForecastWeather from "../componets/ForecastWeather";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddToFavoriteBtn from "../componets/AddToFavoriteBtn";
 import CurrentWeather from "../componets/CurrentWeather";
+import { saveLastViewedCity } from "../utils/lastViewedCity";
 
 const CityDetailsPage = () => {
   const { cityName } = useParams();
@@ -14,6 +15,12 @@ const CityDetailsPage = () => {
   const lon = lonParam !== null ? Number(lonParam) : NaN;
   const [days, setDays] = useState(7);
 
+  useEffect(() => {
+    if (cityName && !Number.isNaN(lat) && !Number.isNaN(lon)) {
+      saveLastViewedCity({ name: cityName, latitude: lat, longitude: lon });
+    }
+  }, [cityName, lat, lon]);
+  
   const handleDays = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setDays(Number(e.target.value));
   };
@@ -24,7 +31,11 @@ const CityDetailsPage = () => {
   const listDays = [];
   for (let i = 1; i <= 16; i++) {
     const str = i === 7 ? `יום ${i} (ברירת מחדל)` : `יום ${i}`;
-    listDays.push(<option key={i} value={i}>{str}</option>);
+    listDays.push(
+      <option key={i} value={i}>
+        {str}
+      </option>,
+    );
   }
 
   return (

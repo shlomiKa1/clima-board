@@ -39,7 +39,7 @@ export const useFavoritesStore = create<FavoriteStoreProps>()(
       clear: () => set({ favorites: [], fetched: false }),
     }),
     {
-      name: "Favorites",
+      name: "favorites",
       partialize: (state) => ({ favorites: state.favorites }),
     },
   ),
