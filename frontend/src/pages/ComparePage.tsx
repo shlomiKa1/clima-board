@@ -1,20 +1,13 @@
 import { useState } from "react";
 import useExecute from "../hooks/useExecute";
-import type { City } from "./SearchPage";
+import type { City } from "../types/city";
 import InputCity from "../componets/InputCity";
 import useSearch from "../hooks/useSearch";
-import { type CurrentData } from "../componets/CurrentWeather";
-
-// interface WeatherResult {
-//   temperature: number;
-//   feels_like: number;
-//   wind_speed: number;
-//   weather_code: number;
-// }
+import { type CurrentWeatherResponse } from "../types/weather";
 
 interface CompareCities {
-  city_a: CurrentData;
-  city_b: CurrentData;
+  city_a: CurrentWeatherResponse;
+  city_b: CurrentWeatherResponse;
 }
 const ComparePage = () => {
   const [searchCityA, setSearchCityA] = useState("");
@@ -27,7 +20,6 @@ const ComparePage = () => {
   const { data, loading, execute } = useExecute<CompareCities>();
 
   const resultsA = useSearch(searchCityA);
-  console.log("resultsA:", resultsA); //
   const resultsB = useSearch(searchCityB);
 
   const handleCompare = async () => {
@@ -53,8 +45,6 @@ const ComparePage = () => {
       },
     });
   };
-
-  console.log(Number(data?.city_a.temperature_2m));
 
   return (
     <div>
@@ -102,7 +92,6 @@ const ComparePage = () => {
       {errorResult && <p>{errorResult}</p>}
       {data && (
         <div>
-          {/* {console.log("data received:", data)} */}
           <h2>
             {selectedCityA?.name}:{data.city_a.current.temperature_2m}°C
           </h2>
