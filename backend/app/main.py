@@ -1,8 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from routes.cities import router as citiesRoute
-from routes.weather import router as weatherRoute
-from routes.favorites import router as favoritesRoute
+from routes.cities import router as cities_route
+from routes.weather import router as weather_route
+from routes.favorites import router as favorites_route
 from middleware.timing import TimingMiddleware
 from middleware.error_handler import error_handler
 
@@ -17,9 +17,9 @@ app.add_middleware(CORSMiddleware,
 
 app.add_middleware(TimingMiddleware)
 app.exception_handler(Exception)(error_handler)
-app.include_router(citiesRoute, prefix="/city")
-app.include_router(weatherRoute, prefix="/weather")
-app.include_router(favoritesRoute, prefix="/favorites")
+app.include_router(cities_route, prefix="/city")
+app.include_router(weather_route, prefix="/weather")
+app.include_router(favorites_route, prefix="/favorites")
 
 @app.get("/health")
 def get_health() -> dict:
