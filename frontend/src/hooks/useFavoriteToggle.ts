@@ -1,53 +1,30 @@
-import { useEffect, useState } from "react";
-import useExecute from "./useExecute";
-import type { Favorite, FavoriteBody } from "../types/favorite";
+import { useState } from "react";
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 function useFavoriteToggle(cityName: string, lat: number, lon: number) {
-  const explorerName = localStorage.getItem("explorerName");
-  const [isFavorite, setIsFavorite] = useState(false);
-  const [existingId, setExistingId] = useState<number | null>(null);
+  const explorerName = localStorage.getItem("explorerName") ?? "";
+  const favorites = useFavoritesStore((state) => state.favorites);
+  const addFavorite = useFavoritesStore((state) => state.addFavorite);
+  const removeFavorite = useFavoritesStore((state) => state.removeFavorite);
+  const [loading, setLoading] = useState(false);
 
-  const { data: favorites, execute: fetchFavorites } = useExecute<Favorite[]>();
-  const { execute: addFav, loading: addLoading } = useExecute<Favorite>();
-  const { execute: removeFav, loading: removeLoading } = useExecute();
-
-  useEffect(() => {
-    fetchFavorites({
-      method: "get",
-      url: "/favorites",
-      params: { explorerName },
-    });
-  }, [explorerName]);
-
-  useEffect(() => {
-    if (!favorites) return;
-    const found = favorites.find((f) => f.lat === lat && f.lon === lon);
-    setIsFavorite(!!found);
-    setExistingId(found?.id ?? null);
-  }, [favorites, cityName]);
+  const existing = favorites.find((fav) => fav.lat === lat && fav.lon === lon);
+  const isFavorite = !!existing;
 
   const toggle = async () => {
-    if (isFavorite && existingId) {
-      await removeFav({ method: "delete", url: `/favorites/${existingId}` });
-      setIsFavorite(false);
-      setExistingId(null);
-    } else {
-      const body: FavoriteBody = {
-        explorerName: explorerName ?? "",
-        cityName,
-        lat,
-        lon,
-      };
-      const created = await addFav({
-        method: "post",
-        url: "/favorites",
-        data: body,
-      });
-      setIsFavorite(true);
-      setExistingId(created?.id ?? null);
+    setLoading(true);
+    try {
+      if (isFavorite && existing) {
+        await removeFavorite(existing.id);
+      } else {
+        await addFavorite({ explorerName, cityName, lat, lon });
+      }
+    } finally {
+      setLoading(false);
     }
   };
-  return { isFavorite, toggle, loading: addLoading || removeLoading };
+
+  return { isFavorite, toggle, loading };
 }
 
 export default useFavoriteToggle;

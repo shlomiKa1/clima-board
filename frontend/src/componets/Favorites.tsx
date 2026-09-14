@@ -1,17 +1,10 @@
-import { useEffect } from "react";
-import useExecute from "../hooks/useExecute";
 import { useNavigate } from "react-router-dom";
 import AddToFavoriteBtn from "./AddToFavoriteBtn";
-import type { Favorite } from "../types/favorite";
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 const Favorites = () => {
-  const explorerName = localStorage.getItem("explorerName");
+  const favorites = useFavoritesStore((state) => state.favorites);
   const navigate = useNavigate();
-  const { data, loading, error, execute } = useExecute<Favorite[]>();
-
-  useEffect(() => {
-    execute({ method: "get", url: "/favorites", params: { explorerName } });
-  }, [explorerName]);
 
   const handleClick = (nameCity: string, lat: number, lon: number) => {
     navigate(`/city/${encodeURIComponent(nameCity)}?lat=${lat}&lon=${lon}`, {
@@ -19,10 +12,7 @@ const Favorites = () => {
     });
   };
 
-  if (loading) return <p>טעינת רשימת המועדפים...</p>;
-  if (error) return <p>{error}</p>;
-
-  if (!data || data.length === 0) return <p>רשימת המועדפים ריקה</p>;
+  if (favorites.length === 0) return <p>רשימת המועדפים ריקה</p>;
 
   return (
     <div>
@@ -34,7 +24,7 @@ const Favorites = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((weather) => (
+          {favorites.map((weather) => (
             <tr
               key={weather.id}
               onClick={() =>

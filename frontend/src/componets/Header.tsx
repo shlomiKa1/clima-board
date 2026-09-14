@@ -1,10 +1,12 @@
 import { NavLink, useNavigate } from "react-router-dom";
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     localStorage.removeItem("explorerName");
+    useFavoritesStore.getState().clear();
     navigate("/", { replace: true });
   };
 
@@ -43,7 +45,7 @@ const Header = () => {
         >
           השוואה
         </NavLink>
-        <button onClick={handleLogout}>יציאה</button>
+        <button onClick={handleLogout}>התנתקות</button>
       </nav>
     </div>
   );

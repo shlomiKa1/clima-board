@@ -1,13 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFavoritesStore } from "../store/useFavoritesStore";
 
 const WelcomePage = () => {
   const [explorerName, setExplorerName] = useState("");
   const navigate = useNavigate();
+  const fetchFavorites = useFavoritesStore((state) => state.fetchFavorites);
 
   const handleLogin = () => {
     if (!explorerName.trim()) return;
-    localStorage.setItem("explorerName", explorerName);
+
+    const name = explorerName.trim();
+    localStorage.setItem("explorerName", name);
+    fetchFavorites(name);
     navigate("/dashboard", { replace: true });
   };
 
