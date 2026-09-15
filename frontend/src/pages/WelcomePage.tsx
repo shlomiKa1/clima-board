@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFavoritesStore } from "../store/useFavoritesStore";
 
 const WelcomePage = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [explorerName, setExplorerName] = useState("");
   const navigate = useNavigate();
   const fetchFavorites = useFavoritesStore((state) => state.fetchFavorites);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
 
   const handleLogin = () => {
     if (!explorerName.trim()) return;
@@ -17,12 +22,14 @@ const WelcomePage = () => {
   };
 
   return (
-    <div>
+    <div className="welcome-page">
+      <h1>מזג האוויר שלך, בכל מקום</h1>
       <input
         type="text"
         value={explorerName}
         onChange={(e) => setExplorerName(e.target.value)}
         placeholder="מומו טוטו"
+        ref={inputRef}
       />
       <button onClick={handleLogin}>התחברות</button>
     </div>

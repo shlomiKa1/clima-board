@@ -295,6 +295,22 @@ footer {
   margin-top: 1rem;
 }
 
+/* ===============
+     Welcome page 
+  ================ */
+.welcome-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.welcome-page input {
+  width: 240px;
+}
+
 /* =============
      Search
   ============== */
