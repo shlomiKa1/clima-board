@@ -11,7 +11,7 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <header>
       <nav>
         <NavLink
           className={({ isActive }) =>
@@ -47,7 +47,7 @@ const Header = () => {
         </NavLink>
         <button onClick={handleLogout}>התנתקות</button>
       </nav>
-    </div>
+    </header>
   );
 };
 

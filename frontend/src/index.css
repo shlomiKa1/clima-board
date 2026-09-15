@@ -101,6 +101,62 @@ a {
   color: inherit;
 }
 
+button {
+  font: inherit;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-h);
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+
+  @media (max-width: 768px) {
+    font-size: 13px;
+    padding: 4px 8px;
+  }
+}
+
+button:hover:not(:disabled) {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ===============
+    Header / Nav
+  ================ */
+
+header nav {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-link {
+  color: var(--text);
+  font-size: 14px;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.nav-link.active {
+  color: var(--text-h);
+  background-color: var(--accent-bg);
+}
+
+header nav button {
+  margin-inline-start: auto;
+}
+
 /*================
  Current Weather
 ================*/
