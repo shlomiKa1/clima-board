@@ -20,6 +20,7 @@ const Favorites = () => {
         <tr>
           <th>עיר</th>
           <th>קוארדינטות</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -34,7 +35,7 @@ const Favorites = () => {
             <td>
               {weather.lat}, {weather.lon}
             </td>
-            <td>
+            <td >
               <AddToFavoriteBtn
                 cityName={weather.cityName}
                 lat={weather.lat}
