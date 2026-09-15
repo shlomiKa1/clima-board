@@ -294,3 +294,48 @@ footer {
   gap: 8px;
   margin-top: 1rem;
 }
+
+/* =============
+     Search
+  ============== */
+
+.city-results {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+}
+
+.city-results li {
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.city-results li:hover {
+  background: var(--accent-bg);
+}
+.city-results li + li {
+  border-top: 1px solid var(--border);
+}
+/* =============
+     Compare
+  ============== */
+
+.compare-result {
+  display: flex;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.compare-result > div {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: center;
+  background-color: var(--accent-bg);
+}

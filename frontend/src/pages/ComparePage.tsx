@@ -9,10 +9,10 @@ interface CompareCities {
   city_a: CurrentWeatherResponse;
   city_b: CurrentWeatherResponse;
 }
+
 const ComparePage = () => {
   const [searchCityA, setSearchCityA] = useState("");
   const [searchCityB, setSearchCityB] = useState("");
-
   const [selectedCityA, setSelectedCityA] = useState<City | null>(null);
   const [selectedCityB, setSelectedCityB] = useState<City | null>(null);
 
@@ -53,7 +53,7 @@ const ComparePage = () => {
       <label>חיפוש עיר 1</label>
       <InputCity input={searchCityA} saveInput={setSearchCityA} />
       {resultsA && resultsA.length > 0 && (
-        <ul>
+        <ul className="city-results">
           {resultsA.map((city) => (
             <li
               key={`${city.latitude}-${city.longitude}`}
@@ -67,10 +67,11 @@ const ComparePage = () => {
           ))}
         </ul>
       )}
+
       <label>חיפוש עיר 2</label>
       <InputCity input={searchCityB} saveInput={setSearchCityB} />
       {resultsB && resultsB.length > 0 && (
-        <ul>
+        <ul className="city-results">
           {resultsB.map((city) => (
             <li
               key={`${city.latitude}-${city.longitude}`}
@@ -91,13 +92,16 @@ const ComparePage = () => {
 
       {errorResult && <p>{errorResult}</p>}
       {data && (
-        <div>
-          <h2>
-            {selectedCityA?.name}:{data.city_a.current.temperature_2m}°C
-          </h2>
-          <h2>
-            {selectedCityB?.name}: {data.city_b.current.temperature_2m}°C
-          </h2>
+        <div className="compare-result">
+          <div>
+            <h2>{selectedCityA?.name}</h2>
+            <p>{Math.round(data.city_a.current.temperature_2m)}°C</p>
+          </div>
+         
+          <div>
+            <h2>{selectedCityB?.name}</h2>
+            <p>{Math.round(data.city_b.current.temperature_2m)}°C</p>
+          </div>
         </div>
       )}
     </div>
