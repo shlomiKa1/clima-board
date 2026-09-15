@@ -35,7 +35,7 @@ const Header = () => {
           }
           to="/favorites"
         >
-          מעודפים
+          מועדפים
         </NavLink>
         <NavLink
           className={({ isActive }) =>

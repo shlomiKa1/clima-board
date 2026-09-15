@@ -157,7 +157,6 @@ header nav button {
   margin-inline-start: auto;
 }
 
-
 /* =============
       Footer
   ============== */
@@ -169,7 +168,6 @@ footer {
   color: var(--text);
   border-top: 1px solid var(--border);
 }
-
 
 /*================
  Current Weather
@@ -206,4 +204,14 @@ footer {
   gap: 16px;
   font-size: 13px;
   color: var(--text);
+}
+
+/* ===============
+    Header / Nav
+  ================ */
+
+.dashboard-links {
+  display: flex;
+  gap: 8px;
+  margin-top: 1rem;
 }
