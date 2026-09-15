@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes.cities import router as cities_route
 from routes.weather import router as weather_route
 from routes.favorites import router as favorites_route
+from routes.atbash import router as atbash_route
 from middleware.timing import TimingMiddleware
 from middleware.error_handler import error_handler
 
@@ -20,7 +21,8 @@ app.exception_handler(Exception)(error_handler)
 app.include_router(cities_route, prefix="/city")
 app.include_router(weather_route, prefix="/weather")
 app.include_router(favorites_route, prefix="/favorites")
+app.include_router(atbash_route, prefix="/atbash")
 
-@app.get("/health")
+@app.get("/health", tags=["Health"])
 def get_health() -> dict:
     return {"message": "The server is running"}
