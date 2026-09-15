@@ -30,7 +30,7 @@ const ForecastWeather = ({ lat, lon, days = 7 }: ForecastProps) => {
     execute({
       method: "get",
       url: "/weather/forecast",
-      params: { lat: lat, lon: lon, days: days },
+      params: { lat, lon, days },
     });
   }, [days, lat, lon]);
 
@@ -60,15 +60,15 @@ const ForecastWeather = ({ lat, lon, days = 7 }: ForecastProps) => {
   }
 
   return (
-    <div>
+    <ul className="forecast-list">
       {dailyForecasts.map((f) => (
-        <li key={f.date}>
-          <h2>{f.date}</h2>
-          <p>מינימום: {f.tempMin}</p>
-          <p>מקסימום: {f.tempMax}</p>
+        <li key={f.date} className="forecast-day">
+          <div>{f.date}</div>
+          <p>↑ {Math.round(f.tempMax)}°</p>
+          <p>↓ {Math.round(f.tempMin)}°</p>
         </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

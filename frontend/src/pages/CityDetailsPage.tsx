@@ -20,7 +20,7 @@ const CityDetailsPage = () => {
       saveLastViewedCity({ name: cityName, latitude: lat, longitude: lon });
     }
   }, [cityName, lat, lon]);
-  
+
   const handleDays = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setDays(Number(e.target.value));
   };
@@ -30,7 +30,8 @@ const CityDetailsPage = () => {
 
   const listDays = [];
   for (let i = 1; i <= 16; i++) {
-    const str = i === 7 ? `יום ${i} (ברירת מחדל)` : `יום ${i}`;
+    const str =
+      i === 7 ? `ל- ${i} הימים הקרובים (ברירת מחדל)` : `ל- ${i} הימים הקרובים`;
     listDays.push(
       <option key={i} value={i}>
         {str}
@@ -44,11 +45,13 @@ const CityDetailsPage = () => {
         <h1>מזג האוויר לעיר: {cityName}</h1>
         <CurrentWeather lat={lat} lon={lon} />
         <AddToFavoriteBtn cityName={cityName} lat={lat} lon={lon} />
+        <br />
         <hr />
         <br />
       </article>
 
       <article>
+        <h2>תחזית לפי יום</h2>
         <select name="days" value={days} onChange={handleDays}>
           {listDays}
         </select>
