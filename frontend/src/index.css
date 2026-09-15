@@ -138,7 +138,6 @@ select {
   border: 1px solid var(--border);
   background: var(--bg);
   color: var(--text-h);
-  /* margin-bottom: 10px; */
   @media (max-width: 768px) {
     font-size: 13px;
     padding: 4px 8px;
@@ -171,6 +170,7 @@ td {
 th {
   color: var(--text);
   font-weight: 500;
+  background-color: var(--accent-border);
 }
 
 tbody tr {
@@ -319,12 +319,15 @@ footer {
   border-radius: 8px;
   overflow-y: auto;
   margin-bottom: 1rem;
+  max-height: 150px;
 }
 
 .city-results li {
   padding: 8px 12px;
   font-size: 14px;
   cursor: pointer;
+  line-height: 30px; 
+  box-sizing: border-box;
 }
 
 .city-results li:hover {

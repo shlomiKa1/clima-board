@@ -49,36 +49,39 @@ const SearchPage = () => {
       {data?.length === 0 ? <h1>לא קיים תחזית לעיר בשם {search}</h1> : ""}
 
       {data && data.length > 0 && (
-        <table>
-          <thead>
-            <tr>
-              <th>מדינה</th>
-              <th>עיר</th>
-              <th>קו רוחב</th>
-              <th>קו אורך</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {data?.map((weather) => (
-              <tr
-              key={`${weather.latitude}-${weather.longitude}`}
-                onClick={() =>
-                  handleDetail(
-                    weather.name,
-                    weather.latitude,
-                    weather.longitude,
-                  )
-                }
-              >
-                <td>{weather.country}</td>
-                <td>{weather.name}</td>
-                <td>{weather.latitude}</td>
-                <td>{weather.longitude}</td>
+        <div>
+          <h1>תוצאות עבור {search}</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>מדינה</th>
+                <th>עיר</th>
+                <th>קו רוחב</th>
+                <th>קו אורך</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+
+            <tbody>
+              {data?.map((weather) => (
+                <tr
+                  key={`${weather.latitude}-${weather.longitude}`}
+                  onClick={() =>
+                    handleDetail(
+                      weather.name,
+                      weather.latitude,
+                      weather.longitude,
+                    )
+                  }
+                >
+                  <td>{weather.country}</td>
+                  <td>{weather.name}</td>
+                  <td>{weather.latitude}</td>
+                  <td>{weather.longitude}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

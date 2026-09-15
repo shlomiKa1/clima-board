@@ -21,7 +21,6 @@ const InputCity = ({
         onChange={(e) => saveInput(e.target.value)}
         placeholder="Tel Aviv"
         ref={inputRef}
-        onFocus={() => saveInput("")}
       />
     </div>
   );

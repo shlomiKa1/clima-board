@@ -67,6 +67,9 @@ const ComparePage = () => {
           ))}
         </ul>
       )}
+      
+      <br />
+      <br />
 
       <label>חיפוש עיר 2</label>
       <InputCity input={searchCityB} saveInput={setSearchCityB} />
@@ -97,7 +100,7 @@ const ComparePage = () => {
             <h2>{selectedCityA?.name}</h2>
             <p>{Math.round(data.city_a.current.temperature_2m)}°C</p>
           </div>
-         
+
           <div>
             <h2>{selectedCityB?.name}</h2>
             <p>{Math.round(data.city_b.current.temperature_2m)}°C</p>
