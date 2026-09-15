@@ -41,13 +41,10 @@ const CityDetailsPage = () => {
 
   return (
     <div>
-      <article>
+      <article className="current-weather">
         <h1>מזג האוויר לעיר: {cityName}</h1>
         <CurrentWeather lat={lat} lon={lon} />
         <AddToFavoriteBtn cityName={cityName} lat={lat} lon={lon} />
-        <br />
-        <hr />
-        <br />
       </article>
 
       <article>

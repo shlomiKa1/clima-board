@@ -113,7 +113,7 @@ button {
   transition:
     background 0.15s,
     border-color 0.15s;
-    
+
   @media (max-width: 768px) {
     font-size: 13px;
     padding: 4px 8px;
@@ -145,7 +145,8 @@ select {
   }
 }
 
-input:focus, select:focus {
+input:focus,
+select:focus {
   outline: none;
   border-color: var(--accent-border);
 }
@@ -246,6 +247,11 @@ footer {
   border-radius: 8px;
   text-align: center;
   font-size: 13px;
+}
+
+.current-weather {
+  border-bottom: 1px solid var(--accent-border);
+  margin-bottom: 1rem;
 }
 
 /* ===============
