@@ -43,8 +43,6 @@ const SearchPage = () => {
         חפש...
       </button>
 
-      <hr />
-
       {errorResult && <p>{errorResult}</p>}
       {loading && <p>טוען רשימת נקודות לעיר</p>}
       {error && <p>{error}</p>}

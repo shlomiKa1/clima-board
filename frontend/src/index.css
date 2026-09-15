@@ -138,7 +138,7 @@ select {
   border: 1px solid var(--border);
   background: var(--bg);
   color: var(--text-h);
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   @media (max-width: 768px) {
     font-size: 13px;
     padding: 4px 8px;
@@ -149,6 +149,37 @@ input:focus,
 select:focus {
   outline: none;
   border-color: var(--accent-border);
+}
+
+/* =============
+      Table
+  ============== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+}
+
+th,
+td {
+  text-align: start;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+
+th {
+  color: var(--text);
+  font-weight: 500;
+}
+
+tbody tr {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+tbody tr:hover {
+  background: var(--accent-bg);
 }
 
 /* ===============

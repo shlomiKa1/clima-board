@@ -15,38 +15,36 @@ const Favorites = () => {
   if (favorites.length === 0) return <p>רשימת המועדפים ריקה</p>;
 
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>עיר</th>
-            <th>קוארדינטות</th>
+    <table>
+      <thead>
+        <tr>
+          <th>עיר</th>
+          <th>קוארדינטות</th>
+        </tr>
+      </thead>
+      <tbody>
+        {favorites.map((weather) => (
+          <tr
+            key={weather.id}
+            onClick={() =>
+              handleClick(weather.cityName, weather.lat, weather.lon)
+            }
+          >
+            <td>{weather.cityName}</td>
+            <td>
+              {weather.lat}, {weather.lon}
+            </td>
+            <td>
+              <AddToFavoriteBtn
+                cityName={weather.cityName}
+                lat={weather.lat}
+                lon={weather.lon}
+              />
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          {favorites.map((weather) => (
-            <tr
-              key={weather.id}
-              onClick={() =>
-                handleClick(weather.cityName, weather.lat, weather.lon)
-              }
-            >
-              <td>{weather.cityName}</td>
-              <td>
-                {weather.lat}, {weather.lon}
-              </td>
-              <td>
-                <AddToFavoriteBtn
-                  cityName={weather.cityName}
-                  lat={weather.lat}
-                  lon={weather.lon}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+        ))}
+      </tbody>
+    </table>
   );
 };
 
