@@ -13,6 +13,22 @@ const Header = () => {
   return (
     <header>
       <nav>
+        {/* <img
+          src="/logo.svg"
+          alt="ClimaBoard"
+          style={{ height: 32, width: "auto" }}
+        /> */}
+        <div
+          className="logo-container"
+          // style={{ display: "flex", alignItems: "center", gap: 8 }}
+        >
+          <img
+            src="/favicon.svg"
+            alt="logo ClimaBoard"
+            // style={{ height: 32, width: 32 }}
+          />
+          <span className="logo-title">ClimaBoard</span>
+        </div>
         <NavLink
           className={({ isActive }) =>
             isActive ? "nav-link active" : "nav-link"

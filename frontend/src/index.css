@@ -56,12 +56,15 @@ body {
   margin: 0;
 }
 #root {
-  max-width: 640px;
+  max-width: 1024px;
   margin: 0 auto;
   min-height: 100svh;
   text-align: center;
   display: flex;
   flex-direction: column;
+  @media (max-width: 1024px) {
+    max-width: 640px;
+  }
 }
 
 main {
@@ -102,7 +105,7 @@ a {
 }
 
 button {
-  font: inherit;
+  /* font: inherit; */
   padding: 8px 16px;
   border-radius: 8px;
   background: var(--bg);
@@ -192,12 +195,13 @@ header nav {
   align-items: center;
   gap: 1rem;
   border-bottom: 1px solid var(--border);
+  justify-content: space-between;
 }
 
 .nav-link {
   color: var(--text);
   font-size: 14px;
-  padding: 6px 10px;
+  padding: 6px 8px;
   border-radius: 8px;
 }
 
@@ -208,6 +212,22 @@ header nav {
 
 header nav button {
   margin-inline-start: auto;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  
+  img {
+    height: 32px;
+    width: 32px;
+  }
+}
+
+.logo-title {
+  font-weight: 500;
+  font-size: 16px;
 }
 
 /* =============
@@ -326,7 +346,7 @@ footer {
   padding: 8px 12px;
   font-size: 14px;
   cursor: pointer;
-  line-height: 30px; 
+  line-height: 30px;
   box-sizing: border-box;
 }
 
