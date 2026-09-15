@@ -1,3 +1,4 @@
+from datetime import datetime, timezone 
 from data import load_data, save_data
 from schemas.favorite import FavoriteBody
 
@@ -18,7 +19,11 @@ def add_weather_favorite(new_weather: FavoriteBody):
             return None
 
     new_id = max([item["id"] for item in data]) + 1 if len(data) > 0 else 1
-    new_weather = {"id": new_id, **new_weather.model_dump()}
+    new_weather = {
+        "id": new_id,
+        **new_weather.model_dump(),
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
     data.append(new_weather)
     save_data(data)
     return new_weather

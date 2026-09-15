@@ -3,6 +3,7 @@ export interface FavoriteBody {
   cityName: string;
   lat: number;
   lon: number;
+  created_at: string;
 }
 
 export interface Favorite extends FavoriteBody {
